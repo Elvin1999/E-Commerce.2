@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>E_Commerce.Business</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\E-Commerce.DataAccess\E-Commerce.DataAccess.csproj" />
+    <ProjectReference Include="..\E-Commerce.Northwind.Entities\E-Commerce.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

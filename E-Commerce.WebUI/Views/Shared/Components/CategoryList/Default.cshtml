@@ -1,0 +1,8 @@
+﻿@model E_Commerce.WebUI.Models.CategoryListViewModel
+
+<div class="list-group" >
+    @foreach (var item in Model.Categories)
+    {
+        <a href="/product/index?category=@item.CategoryId" class="list-group-item page-link">@item.CategoryName</a>
+    }
+</div>
