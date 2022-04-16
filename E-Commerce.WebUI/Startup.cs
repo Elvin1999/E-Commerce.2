@@ -55,7 +55,7 @@ namespace E_Commerce.WebUI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("Default", "{controller=Product}/{action=Index}/{id?}");
             });
         }
     }

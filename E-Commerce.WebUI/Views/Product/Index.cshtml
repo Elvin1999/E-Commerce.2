@@ -1,4 +1,7 @@
 ﻿@model E_Commerce.WebUI.Models.ProductListViewModel
+
+
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -26,5 +29,13 @@
                 </tr>
             }
         </table>
-
+        @await Component.InvokeAsync("PageList")
     </div>
+
+    <product-list-pager  current-category="@Model.CurrentCategory"
+    current-page="@Model.CurrentPage"
+    page-count="@Model.PageCount"
+    page-size="@Model.PageSize"
+    >
+
+</product-list-pager>

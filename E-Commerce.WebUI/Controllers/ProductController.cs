@@ -23,7 +23,11 @@ namespace E_Commerce.WebUI.Controllers
             var products = _productService.GetByCategory(category);
             var vm = new ProductListViewModel()
             {
-                Products =products.Skip((page-1)*pageSize).Take(pageSize).ToList() 
+                Products =products.Skip((page-1)*pageSize).Take(pageSize).ToList(),
+                PageCount=(int)Math.Ceiling(products.Count()/(double)pageSize),
+                PageSize=pageSize,
+                CurrentCategory=category,
+                CurrentPage=page
             };
             return View(vm);
         }
