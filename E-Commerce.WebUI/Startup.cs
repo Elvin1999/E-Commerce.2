@@ -31,7 +31,8 @@ namespace E_Commerce.WebUI
 
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
-
+            services.AddSession();
+            services.AddDistributedMemoryCache();
             services.AddRazorPages();
         }
 
@@ -52,7 +53,7 @@ namespace E_Commerce.WebUI
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("Default", "{controller=Product}/{action=Index}/{id?}");

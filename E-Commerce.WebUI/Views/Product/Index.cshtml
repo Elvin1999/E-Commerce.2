@@ -19,6 +19,9 @@
                 <td>
                     Unit In Stock
                 </td>
+                <td>
+
+                </td>
             </tr>
             @foreach (var item in Model.Products)
             {
@@ -26,6 +29,13 @@
                     <td>@item.ProductName</td>
                     <td>@item.UnitPrice</td>
                     <td>@item.UnitsInStock</td>
+                    <td>
+                        <a class="btn btn-xs btn-success" asp-controller="Cart" 
+                        asp-action="AddToCart" asp-route-productId="@item.ProductId"
+                        >
+                        AddToCart
+                    </a>
+                    </td>
                 </tr>
             }
         </table>

@@ -19,12 +19,23 @@ namespace E_Commerce.WebUI.ViewComponents
         public ViewViewComponentResult Invoke()
         {
             var currentPage = HttpContext.Request.Query["page"];
+            var category=HttpContext.Request.Query["category"];
+            var canConvertCategory = int.TryParse(category, out int resultCategory);
+            
             var canConvert = int.TryParse(currentPage, out int result);
             if (!canConvert)
             {
                 result = 1;
             }
-            var count = (int)Math.Ceiling(_productService.GetAll().Count/10.0d);
+            var count = 0;
+            if (canConvertCategory)
+            {
+            count = (int)Math.Ceiling(_productService.GetByCategory(resultCategory).Count/10.0d);
+            }
+            else
+            {
+                count = (int)Math.Ceiling(_productService.GetAll().Count / 10.0d);
+            }
             var pages = new List<int>();
             for (int i = 1; i <=count; i++)
             {
@@ -33,7 +44,8 @@ namespace E_Commerce.WebUI.ViewComponents
             var model = new PageListViewModel
             {
                Pages=pages,
-               CurrentPage = result
+               CurrentPage = result,
+               Category= resultCategory
             };
             return View(model);
         }
