@@ -38,6 +38,11 @@ namespace E_Commerce.Business.Concrete
             return _productDal.GetList(p => p.CategoryId == categoryId || categoryId==0);
         }
 
+        public Product GetById(int id)
+        {
+            return _productDal.Get(p => p.ProductId == id);
+        }
+
         public void Update(Product product)
         {
             _productDal.Update(product);

@@ -2,8 +2,10 @@ using E_Commerce.Business.Abstract;
 using E_Commerce.Business.Concrete;
 using E_Commerce.DataAccess.Abstract;
 using E_Commerce.DataAccess.Concrete;
+using E_Commerce.WebUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +33,11 @@ namespace E_Commerce.WebUI
 
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
+
+            services.AddSingleton<ICartSessionService, CartSessionService>();
+            services.AddSingleton<ICartService, CartService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddSession();
             services.AddDistributedMemoryCache();
             services.AddRazorPages();

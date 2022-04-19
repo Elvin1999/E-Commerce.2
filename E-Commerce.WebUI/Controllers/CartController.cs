@@ -22,8 +22,15 @@ namespace E_Commerce.WebUI.Controllers
         {
             return View();
         }
-        public IActionResult AddToCart()
+        public IActionResult AddToCart(int productId)
         {
+            var productToBeAdded = _productService.GetById(productId);
+            var cart = _cartSessionService.GetCart();
+            _cartService.AddToCart(cart, productToBeAdded);
+            _cartSessionService.SetCart(cart);
+            TempData.Add("message", string.Format("Your product , {0} was added successfully ", productToBeAdded.ProductName));
+
+            return RedirectToAction("Index", "Product");
 
         }
     }
