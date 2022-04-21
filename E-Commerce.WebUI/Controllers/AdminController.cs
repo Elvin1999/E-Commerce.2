@@ -30,6 +30,13 @@ namespace E_Commerce.WebUI.Controllers
         [HttpPost]
         public IActionResult Add(Product product)
         {
+            if (ModelState.IsValid)
+            {
+                _productService.Add(product);
+                TempData.Add("message", "Product was added successfully");
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
     }
