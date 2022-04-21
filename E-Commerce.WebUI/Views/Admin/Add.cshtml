@@ -14,9 +14,11 @@
         <span class="bg-danger  p-auto text-white animate__animated animate__backInLeft " asp-validation-for="Product.ProductName" ></span>
     </div>
      <div class="form-group" >
-        <label asp-for=Product.CategoryId ></label>
-        <input  asp-for=Product.CategoryId class="form-control" placeholder="Category Id" />
-        <span class="bg-danger  p-auto text-white animate__animated animate__backInLeft " asp-validation-for="Product.CategoryId" ></span>
+         <select asp-for="Product.CategoryId" class="form-control"
+            asp-items="@(new SelectList(Model.Categories, "CategoryId", "CategoryName"))">
+        <option>Please select one</option>
+    </select>
+
     </div>
      <div class="form-group" >
         <label asp-for=Product.UnitPrice ></label>

@@ -8,10 +8,12 @@ namespace E_Commerce.WebUI.Controllers
     public class AdminController : Controller
     {
         private IProductService _productService;
+        private ICategoryService _categoryService;
 
-        public AdminController(IProductService productService)
+        public AdminController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
 
         public IActionResult Index()
@@ -25,7 +27,12 @@ namespace E_Commerce.WebUI.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            var model = new ProductAddViewModel
+            {
+                Product = new Product(),
+                Categories = _categoryService.GetAll()
+            };
+            return View(model);
         }
         [HttpPost]
         public IActionResult Add(Product product)
