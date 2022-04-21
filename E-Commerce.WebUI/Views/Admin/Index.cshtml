@@ -2,11 +2,11 @@
 
 @{
     ViewBag.Title = "Admin Panel";
-    Layout = "~/Views/Shared/Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 <h2>Product List</h2>
-<a class="btn btn-xs btn-success" asp-controller="admin" asp-action="Insert" >Add a new product</a>
+<a class="m-2 btn btn-xs btn-success" asp-controller="admin" asp-action="Insert" >Add a new product</a>
  <div>
 
         <table class="table">
@@ -29,18 +29,16 @@
                     <td>@item.ProductName</td>
                     <td>@item.UnitPrice</td>
                     <td>@item.UnitsInStock</td>
+                
                     <td>
-                        <a class="btn btn-xs btn-success" asp-controller="Cart" 
-                        asp-action="AddToCart" asp-route-productId="@item.ProductId"
-                        >
-                        AddToCart
-                    </a>
-                    </td>
-                    <td>
-                        <a class="btn btn-xs btn-info" asp-controller="admin" asp-action="Update" asp-route-productId="@item.ProductId" ></a>
+                        <a class="btn btn-xs btn-info" asp-controller="admin" asp-action="Update" asp-route-productId="@item.ProductId" >
+                            Update
+                        </a>
                     </td>
                      <td>
-                        <a class="btn btn-xs btn-danger" asp-controller="admin" asp-action="Delete" asp-route-productId="@item.ProductId" ></a>
+                        <a class="btn btn-xs btn-danger" asp-controller="admin" asp-action="Delete" asp-route-productId="@item.ProductId" >
+                            Delete
+                        </a>
                     </td>
                 </tr>
             }
