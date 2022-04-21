@@ -1,0 +1,49 @@
+﻿@model E_Commerce.WebUI.Models.ProductListViewModel
+
+@{
+    ViewBag.Title = "Admin Panel";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+}
+
+<h2>Product List</h2>
+<a class="btn btn-xs btn-success" asp-controller="admin" asp-action="Insert" >Add a new product</a>
+ <div>
+
+        <table class="table">
+            <tr>
+                <td>
+                    Product Name
+                </td>
+                <td>
+                    Unit Price
+                </td>
+                <td>
+                    Unit In Stock
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.UnitsInStock</td>
+                    <td>
+                        <a class="btn btn-xs btn-success" asp-controller="Cart" 
+                        asp-action="AddToCart" asp-route-productId="@item.ProductId"
+                        >
+                        AddToCart
+                    </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-xs btn-info" asp-controller="admin" asp-action="Update" asp-route-productId="@item.ProductId" ></a>
+                    </td>
+                     <td>
+                        <a class="btn btn-xs btn-danger" asp-controller="admin" asp-action="Delete" asp-route-productId="@item.ProductId" ></a>
+                    </td>
+                </tr>
+            }
+        </table>
+       @* @await Component.InvokeAsync("PageList")*@
+    </div>
