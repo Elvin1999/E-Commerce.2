@@ -2,10 +2,13 @@ using E_Commerce.Business.Abstract;
 using E_Commerce.Business.Concrete;
 using E_Commerce.DataAccess.Abstract;
 using E_Commerce.DataAccess.Concrete;
+using E_Commerce.WebUI.Entities;
 using E_Commerce.WebUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -38,6 +41,12 @@ namespace E_Commerce.WebUI
             services.AddSingleton<ICartService, CartService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddDbContext<CustomeIdentityDbContext>(
+                options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            services.AddIdentity<CustomIdentityUser, CustomIdentityRole>()
+                .AddEntityFrameworkStores<CustomeIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddSession();
             services.AddDistributedMemoryCache();
             services.AddRazorPages();
@@ -59,7 +68,10 @@ namespace E_Commerce.WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
             app.UseSession();
             app.UseEndpoints(endpoints =>
             {

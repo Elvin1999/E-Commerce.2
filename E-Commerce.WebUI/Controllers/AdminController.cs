@@ -1,10 +1,12 @@
 ﻿using E_Commerce.Business.Abstract;
 using E_Commerce.Entities.Concrete;
 using E_Commerce.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce.WebUI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductService _productService;
@@ -46,5 +48,7 @@ namespace E_Commerce.WebUI.Controllers
 
             return View();
         }
+
+
     }
 }
