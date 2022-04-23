@@ -1,0 +1,16 @@
+﻿@model E_Commerce.WebUI.Models.UserDetailsViewModel
+
+
+<ul class="dropdown-menu" >
+    @if (!String.IsNullOrEmpty(Model.Username))
+    {
+        
+    <li>
+        <a>Welcome @Model.Username</a>
+    </li>
+    <li>
+        <a  asp-controller="Account" asp-action="LogOff" >Log Off</a>
+    </li>
+
+    }
+</ul>

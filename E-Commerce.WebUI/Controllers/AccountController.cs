@@ -73,8 +73,8 @@ namespace E_Commerce.WebUI.Controllers
                             return View(registerViewModel);
                         }
                     }
-                    _userManager.AddToRoleAsync(user, "NewUser").Wait();
-                    return RedirectToAction("Login", "Account");
+                    _userManager.AddToRoleAsync(user, "Admin").Wait();
+                    return RedirectToAction("Login");
                 }
 
 
@@ -82,6 +82,7 @@ namespace E_Commerce.WebUI.Controllers
             return View(registerViewModel);
         }
 
+    
         public IActionResult LogOff()
         {
             _signInManager.SignOutAsync().Wait();
