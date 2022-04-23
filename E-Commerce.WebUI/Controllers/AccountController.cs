@@ -29,6 +29,7 @@ namespace E_Commerce.WebUI.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel loginViewModel)
         {
             if (ModelState.IsValid)
@@ -44,6 +45,7 @@ namespace E_Commerce.WebUI.Controllers
             return View(loginViewModel);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterViewModel registerViewModel)
         {
             if (ModelState.IsValid)
